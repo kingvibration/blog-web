@@ -4,6 +4,7 @@ lang: zh-CN # 表示本页面的语言为zh-CN(简体中文)
 heroImage: 'https://www.vuepress.cn/hero.png'
 heroText: kingvibration的技术博客 # 首页的标题内容
 actionText: Get Started → # 首页跳转按钮的内容
+actionLink: 'baidu.com'
 features: #  表明首页的特征，固定的格式为title + details，以三栏流式布局的方式展示
   - title: 博客
     details: 专注前端学习，记录点点滴滴
