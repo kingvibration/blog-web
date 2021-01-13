@@ -1,51 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-  <pre>
-    [html] 有用过HTML5的webSQL和IndexedDB吗？说说你对它们的理解
 
-      webSQL 和 IndexedDB 都是一种客户端的数据存储方案，webSQL已经废弃。IndexedDB 的特点是：存储空间大，使用异步存储数据模式，存放键值对型数据，支持数据库事务等，同时还可以存储多种类型数据，包括 js 对象类型。可以用在前端缓存大量数据。
+## [html] 有用过HTML5的webSQL和IndexedDB吗？说说你对它们的理解
 
-      <a href="http://www.ruanyifeng.com/blog/2018/07/indexeddb.html" target="_blank">http://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a>
+  webSQL 和 IndexedDB 都是一种客户端的数据存储方案，webSQL已经废弃。IndexedDB 的特点是：存储空间大，使用异步存储数据模式，存放键值对型数据，支持数据库事务等，同时还可以存储多种类型数据，包括 js 对象类型。可以用在前端缓存大量数据。
 
-    [css] 怎样把一个div居中？怎样把一个浮动元素居中？怎样把绝对定位的div居中？
+  <a href="http://www.ruanyifeng.com/blog/2018/07/indexeddb.html" target="_blank">http://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a>
 
-      主要用到:
+## [css] 怎样把一个div居中？怎样把一个浮动元素居中？怎样把绝对定位的div居中？
 
-      flex
-      text-align: center;
-      margin: 0 auto;
-      position: relative | absolute; left: 50%;
-      vertical-align: middle;
-      transform: translate(-50%);
+  主要用到:
 
-    [js] 写一个方法获取图片的原始宽高
+  flex
+  text-align: center;
+  margin: 0 auto;
+  position: relative | absolute; left: 50%;
+  vertical-align: middle;
+  transform: translate(-50%);
 
-      通过new Image() 实例对象的naturalWidth 和 naturalHeight
+## [js] 写一个方法获取图片的原始宽高
 
-      H5中img标签新增了两个属性naturalWidth和naturalHeight可以获取图片的原始尺寸
+  通过new Image() 实例对象的naturalWidth 和 naturalHeight
+
+  H5中img标签新增了两个属性naturalWidth和naturalHeight可以获取图片的原始尺寸
 
 
-    [软技能] 知道IPV6是什么吗？说说它和IPV4的区别是什么？
+## [软技能] 知道IPV6是什么吗？说说它和IPV4的区别是什么？
 
-      ipv6增加了海量的网络地址，使物联网成为可能。ipv4提供的2的32次方的地址根本不够无数的家用设备使用。而2的128次方的地址可为飞速增加的物联网设备提供足够的地址。如今到来的5G时代，ipv6在底层上可谓功不可没。
+  ipv6增加了海量的网络地址，使物联网成为可能。ipv4提供的2的32次方的地址根本不够无数的家用设备使用。而2的128次方的地址可为飞速增加的物联网设备提供足够的地址。如今到来的5G时代，ipv6在底层上可谓功不可没。
 
-      下一代ip协议，ipv4协议不久地址就会用完，采用ipv6后，可使用的地址数量将大大增加。
-
-
-  </pre>
+  下一代ip协议，ipv4协议不久地址就会用完，采用ipv6后，可使用的地址数量将大大增加。
 
 
+ 
   测试图例
   <img id="img" src="../assets/img/bom&dom.jpg" alt="">
 
-</body>
 
-<script>
+```javascript
+
 
   //手写
 
@@ -144,16 +135,4 @@
 
   console.log(request)
 
-
-
-
-
-
-
-
-
-
-
-
-</script>
-</html>
+```
