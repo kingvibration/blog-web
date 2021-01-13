@@ -20,6 +20,7 @@ const writeFileRecursive = function(path, buffer, callback){
 
 const writeFiles = function (month) {
     for (var i = 1; i < 31; i++) {
+        i < 10 ? i = `0${i}` : null;
         writeFileRecursive(`./docs/daily/${month}/day${i}.md`, '你好', function (error) {
             if (error) {
                 console.log(error);
@@ -48,8 +49,8 @@ const getJson = function(y, m){
 }
 
 const rename = function(month){
-    for (var i = 1; i < 31; i++) {
-        fs.rename(`./docs/daily/${month}/day${i+30}.html`, `./docs/daily/${month}/day${i}.md`, function (error) {
+    for (var i = 1; i < 30; i++) {
+        fs.rename(`./docs/daily/${month}/day${i}.html`, `./docs/daily/${month}/day${i}.md`, function (error) {
             if (error) {
                 console.log(error);
                 return false;
@@ -60,10 +61,10 @@ const rename = function(month){
 }
 
 // 写文件
-//writeFiles('201906');
+ writeFiles('201906');
 
 //获json
-// getJson('2019', '04')
+ // getJson('2019', '06')
 
 
-rename('201904')
+// rename('201906')
