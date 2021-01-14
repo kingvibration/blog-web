@@ -1,61 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-  <pre>
-    [html] 你了解什么是无障碍web（WAI）吗？在开发过程中要怎么做呢？
 
-      无障碍 web 是指能让视觉障碍的人也能根据屏幕阅读器的提示阅读网页。这一块只知道一个大致概念，国内使用较少（甚至还遇到过加了 title 被测试提 bug 的情况）
+## [html] 你了解什么是无障碍web（WAI）吗？在开发过程中要怎么做呢？
 
-      目前能想到的只有下面几点：
+  无障碍 web 是指能让视觉障碍的人也能根据屏幕阅读器的提示阅读网页。这一块只知道一个大致概念，国内使用较少（甚至还遇到过加了 title 被测试提 bug 的情况）
 
-      尽可能地使用语义化标签，如 section, article 等标签
-      img 标签添加 alt
-      button 或者按钮上添加 title
-      表单尽量使用 label for 可以和控件的 id 进行关联
-      参考文章：
-      <a href="https://mp.weixin.qq.com/s/3QNXBpGB0ZiroV8OGnXCbA" target="_blank">无障碍 Web</a>
+  目前能想到的只有下面几点：
 
-    [css] 请描述css的权重计算规则
+  尽可能地使用语义化标签，如 section, article 等标签
+  img 标签添加 alt
+  button 或者按钮上添加 title
+  表单尽量使用 label for 可以和控件的 id 进行关联
+  参考文章：
+  <a href="https://mp.weixin.qq.com/s/3QNXBpGB0ZiroV8OGnXCbA" target="_blank">无障碍 Web</a>
 
-      权重值计算
+## [css] 请描述css的权重计算规则
 
-      <table border="1">
-      <tr><td>选择器	           </td><td>         案例	        </td><td>   权重值 </tr>
-      <tr><td>!important	     </td><td>         !important	  </td><td>   Infinity </tr>
-      <tr><td>内联样式	         </td><td>         style=".."	  </td><td>   1000 </tr>
-      <tr><td>ID	             </td><td>         #id	        </td><td>   100</tr>
-      <tr><td>class	           </td><td>         .class       </td><td>	  10</tr>
-      <tr><td>属性	             </td><td>         [type='text']</td><td>	  10</tr>
-      <tr><td>伪类              </td><td>	       :hover	      </td><td>   10</tr>
-      <tr><td>标签	             </td><td>         p	          </td><td>   1</tr>
-      <tr><td>伪元素	           </td><td>         ::first-line </td><td>	  1</tr>
-      <tr><td>相邻选择器、子代选择器、通配符</td><td>* > +	        </td><td>   0</tr>
-      </table>
-      比较规则
+  权重值计算
 
-        1000>100。也就是说从左往右逐个等级比较，前一等级相等才往后比。
-        在权重相同的情况下，后面的样式会覆盖掉前面的样式。
-        继承属性没有权重值
-        通配符、子选择器、相邻选择器等的。虽然权值为0，但是也比继承的样式优先。
-        ie6以上才支持important，并且尽量少用它。
+  |选择器	           |         案例	        |   权重值 |
+  |:-|:-:|-:|
+  |!important	     |         !important	  |   Infinity |
+  |内联样式	         |         style=".."	  |   1000 |
+  |ID	             |         #id	        |   100|
+  |class	           |         .class       |	  10|
+  |属性	             |         [type='text']|	  10|
+  |伪类              |	       :hover	      |   10|
+  |标签	             |         p	          |   1|
+  |伪元素	           |         ::first-line |	  1|
+  |相邻选择器、子代选择器、通配符|* > +	        |   0|
+  </table>
+  比较规则
 
-      参考：
+    1000>100。也就是说从左往右逐个等级比较，前一等级相等才往后比。
+    在权重相同的情况下，后面的样式会覆盖掉前面的样式。
+    继承属性没有权重值
+    通配符、子选择器、相邻选择器等的。虽然权值为0，但是也比继承的样式优先。
+    ie6以上才支持important，并且尽量少用它。
 
-      <a href="https://www.jb51.net/css/597210.html" target="_blank">参考1</a>
-      <a href="http://www.cnblogs.com/dq-Leung/p/4213375.html" target="_blank">参考2</a>
-      <a href="https://blog.csdn.net/qq_36130706/article/details/81415469" target="_blank">参考3</a>
-      <a href="https://blog.csdn.net/Street_Partners/article/details/83051546" target="_blank">参考4</a>
+  参考：
 
-    [js] 写一个获取数组的最大值、最小值的方法
+  <a href="https://www.jb51.net/css/597210.html" target="_blank">参考1</a>
+  <a href="http://www.cnblogs.com/dq-Leung/p/4213375.html" target="_blank">参考2</a>
+  <a href="https://blog.csdn.net/qq_36130706/article/details/81415469" target="_blank">参考3</a>
+  <a href="https://blog.csdn.net/Street_Partners/article/details/83051546" target="_blank">参考4</a>
 
-    [软技能] 在工作中能让你最有成就感的是什么？并介绍下你最得意的作品吧
-
-
-  </pre>
+## [js] 写一个获取数组的最大值、最小值的方法
 
 
   <div class="red blue">css计算规则和class先后顺序无关</div>
@@ -69,10 +57,8 @@
       color: blue
     }
   </style>
-</body>
 
-<script>
-
+```javascript
   //手写
 
   let arr = [1,2,3,4]
@@ -105,6 +91,5 @@
 
   let res2 = getMax2([25, 62, 91, 78, 34, 62]);
   console.log('getMax2', res2)
-
-</script>
-</html>
+```
+## [软技能] 在工作中能让你最有成就感的是什么？并介绍下你最得意的作品吧
