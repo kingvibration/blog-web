@@ -12,9 +12,10 @@ module.exports = {
         nav:[ // 导航栏配置
             {text: '学习笔记', link: '/studynotes/' },
             {text: '前端基础', link: '/accumulate/' },
+            {text: '前端进阶', link: '/advanced/' },
             {text: '算法题库', link: '/algorithm/'},
             {text: '日常积累', link: '/daily/'},
-            {text: '微博', link: 'https://baidu.com'}
+            {text: 'Github', link: 'https://github.com/'}
         ],
          sidebar:{
            '/accumulate/': [
@@ -25,6 +26,14 @@ module.exports = {
                      { title: 'dayitems02', path:'2'},
                  ]
                }
+             ],
+             '/advanced/': [
+                 {
+                     title: '调用堆栈',
+                     children: [
+                         { title: '理解JavaScript 中的执行上下文和执行栈', path:'callstack/1'},
+                     ]
+                 }
              ],
              '/algorithm/': [
                {
