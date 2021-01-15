@@ -37,7 +37,7 @@ const writeFiles = function (month) {
 *
 */
 
-const getTpl = (y, m, d) => `{ title: '${d}', path:'${y}${m}/day${d}'},`
+const getTpl = (y, m, d) => `{ title: 'day${d}', path:'${y}${m}/day${d}'},`
 
 const getJson = function(y, m){
 
@@ -61,10 +61,10 @@ const rename = function(month){
 }
 
 // 写文件
- writeFiles('201907');
+ //writeFiles('201907');
 
 //获json
- // getJson('2019', '06')
+  getJson('2019', '07')
 
 
 // rename('201906')

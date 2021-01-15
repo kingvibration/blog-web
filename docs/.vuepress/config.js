@@ -12,7 +12,18 @@ module.exports = {
         nav:[ // 导航栏配置
             {text: '学习笔记', link: '/studynotes/' },
             {text: '前端基础', link: '/accumulate/' },
-            {text: '前端进阶', link: '/advanced/' },
+            {text: '前端进阶',
+                items: [
+                    {text: 'heh', link: '/advanced/'}
+                ]
+            },
+            {text: '前端框架',
+                items: [
+                    {text: 'vue', link: '/framework/vue/'},
+                    {text: 'react', link: '/framework/react/'}
+                ]
+
+            },
             {text: '算法题库', link: '/algorithm/'},
             {text: '日常积累', link: '/daily/'},
             {text: 'Github', link: 'https://github.com/'}
@@ -32,6 +43,22 @@ module.exports = {
                      title: '调用堆栈',
                      children: [
                          { title: '理解JavaScript 中的执行上下文和执行栈', path:'callstack/1'},
+                     ]
+                 }
+             ],
+             '/framework/vue/': [
+                 {
+                     title: 'vue',
+                     children: [
+                         { title: '理解JavaScript 中的执行上下文和执行栈', path:'1'},
+                     ]
+                 }
+             ],
+             '/framework/react/': [
+                 {
+                     title: 'react',
+                     children: [
+                         { title: '理解JavaScript 中的执行上下文和执行栈', path:'1'},
                      ]
                  }
              ],
@@ -152,7 +179,36 @@ module.exports = {
                  },
                  { title: '201907',
                      children: [
-
+                         { title: 'day01', path:'201907/day01'},
+                         { title: 'day02', path:'201907/day02'},
+                         { title: 'day03', path:'201907/day03'},
+                         { title: 'day04', path:'201907/day04'},
+                         { title: 'day05', path:'201907/day05'},
+                         { title: 'day06', path:'201907/day06'},
+                         { title: 'day07', path:'201907/day07'},
+                         { title: 'day08', path:'201907/day08'},
+                         { title: 'day09', path:'201907/day09'},
+                         { title: 'day10', path:'201907/day10'},
+                         { title: 'day11', path:'201907/day11'},
+                         { title: 'day12', path:'201907/day12'},
+                         { title: 'day13', path:'201907/day13'},
+                         { title: 'day14', path:'201907/day14'},
+                         { title: 'day15', path:'201907/day15'},
+                         { title: 'day16', path:'201907/day16'},
+                         { title: 'day17', path:'201907/day17'},
+                         { title: 'day18', path:'201907/day18'},
+                         { title: 'day19', path:'201907/day19'},
+                         { title: 'day20', path:'201907/day20'},
+                         { title: 'day21', path:'201907/day21'},
+                         { title: 'day22', path:'201907/day22'},
+                         { title: 'day23', path:'201907/day23'},
+                         { title: 'day24', path:'201907/day24'},
+                         { title: 'day25', path:'201907/day25'},
+                         { title: 'day26', path:'201907/day26'},
+                         { title: 'day27', path:'201907/day27'},
+                         { title: 'day28', path:'201907/day28'},
+                         { title: 'day29', path:'201907/day29'},
+                         { title: 'day30', path:'201907/day30'}
                      ]
                  },
                  { title: '201908',
