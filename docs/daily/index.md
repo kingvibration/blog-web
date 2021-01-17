@@ -26,7 +26,7 @@
    d) 最终输出一个长度为5，且内容不重复的数组arr。
 
 
-```$xslt
+```javascript
    var arr = new Array(5);
     var num = randomNumber();
     var i = 0;

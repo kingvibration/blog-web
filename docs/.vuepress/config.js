@@ -29,6 +29,17 @@ module.exports = {
             {text: 'Github', link: 'https://github.com/'}
         ],
          sidebar:{
+           '/studynotes/': [
+               {
+                   title: '计算机基础',path:'fundamentals-of-computer',
+               },
+               {
+                   title: '程序员基础',path:'fundamentals-of-programming',
+               },
+               {
+                   title: 'JavaScript数据结构与算法',path:'js-data-structure-and-algorithm',
+               }
+           ],
            '/accumulate/': [
                {
                  title: 'dayhtml',

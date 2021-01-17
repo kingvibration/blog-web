@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Title</title><base target="_blank">
+
 </head>
 <body>
 
@@ -16,13 +17,28 @@
 </datalist>
 
 
-<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/accesskey" target="_blank" accesskey="o">快捷键x：accesskey</a>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/accesskey"   accesskey="o">快捷键x：accesskey</a>
 <div accesskey="j" onclick="this.style.color = 'red';">快捷键z：变红</div>
 
 
+<button onclick="q()">按钮</button>
 
 <script>
 
+
+
+
+
+   function q(){
+       if (window.navigator.vibrate) {
+           window.navigator.vibrate([200, 100, 200]);
+
+           window.navigator.xxx
+       } else {
+           alert("你的浏览器不支持调用手机震动");
+       }
+
+   }
 
   let a = {
       name: 'wangzz',
@@ -69,8 +85,10 @@
 
 
 
+  let length = 9;
 
-
+  console.log(9 * length--)
+  console.log(length)
 
 
 </script>
