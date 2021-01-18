@@ -58,8 +58,8 @@ console.log('1.' + window.getComputedStyle(span).display);
 span.style.float = 'left';
 console.log('2.' + window.getComputedStyle(span).display);
 // 输出：
-1. inline
-2. block
+// 1. inline
+// 2. block
 ```
 
 

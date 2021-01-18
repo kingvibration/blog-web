@@ -1,8 +1,10 @@
 ## [html] 有使用过svg吗？请用svg画一个圆
 
+```html
 <svg width="50" height="50">
     <circle cx="25" cy="25" r="10" fill="black" />
 </svg>
+```
 
 ## [css] 写出div在不固定高度的情况下水平垂直居中的方法？
 

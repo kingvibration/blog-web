@@ -61,10 +61,10 @@ const rename = function(month){
 }
 
 // 写文件
- //writeFiles('201907');
+ writeFiles('201908');
 
 //获json
-  getJson('2019', '07')
+  getJson('2019', '08')
 
 
 // rename('201906')
