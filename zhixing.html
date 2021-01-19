@@ -23,6 +23,15 @@
 
 <button onclick="q()">按钮</button>
 
+<text-reverse text='12345'></text-reverse>
+
+<video width=”450″ height=”340″ controls>
+  <source src=”W3Cschool.mp4″ type=”video/mp4″>
+  <source src=”W3Cschool.ogg” type=”video/ogg”>
+  <track kind=”subtitles” label=”English” src=”W3Cschool_en.vtt” srclang=”en”></track>
+</video>
+
+
 <script>
 
 
@@ -92,6 +101,28 @@
   console.log(--length)
 
 
+
+   class TextReverse extends HTMLElement {
+       constructor() {
+           super();
+           const shadowRoot = this.attachShadow({ mode: 'open' });
+           const text = this.getAttribute('text') || '';
+           const wrapper = document.createElement('span');
+           wrapper.textContent = text.split('').reverse().join('');
+           shadowRoot.appendChild(wrapper);
+
+           const style = document.createElement('style');
+           style.textContent = `* {
+              background: red;
+           }`
+           shadowRoot.appendChild(style);
+       }
+   }
+
+   customElements.define(
+       'text-reverse',
+       TextReverse
+   )
 
 
 

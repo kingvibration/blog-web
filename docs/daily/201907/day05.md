@@ -6,6 +6,8 @@ accesskey属性目前是h5标准中的一个全局快捷键访问属性，通过
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/accesskey" target="_blank" accesskey="x">快捷键x：accesskey</a>
 <div accesskey="z" onclick="this.style.color = 'red';">快捷键z：变红</div>
 ```
+mac 快捷键： control + option + key
+
 参考文档：
 
 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/accesskey)

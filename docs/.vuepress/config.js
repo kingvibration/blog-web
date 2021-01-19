@@ -219,7 +219,8 @@ module.exports = {
                          { title: 'day27', path:'201907/day27'},
                          { title: 'day28', path:'201907/day28'},
                          { title: 'day29', path:'201907/day29'},
-                         { title: 'day30', path:'201907/day30'}
+                         { title: 'day30', path:'201907/day30'},
+                         { title: 'day31', path:'201907/day31'}
                      ]
                  },
                  { title: '201908',
