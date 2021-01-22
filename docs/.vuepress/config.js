@@ -24,7 +24,7 @@ module.exports = {
                 ]
 
             },
-            {text: '算法题库', link: '/algorithm/'},
+            {text: '数据结构与算法', link: '/algorithm/'},
             {text: '日常积累', link: '/daily/'},
             {text: 'Github', link: 'https://github.com/'}
         ],
@@ -37,7 +37,7 @@ module.exports = {
                    title: '程序员基础',path:'fundamentals-of-programming',
                },
                {
-                   title: 'JavaScript数据结构与算法',path:'js-data-structure-and-algorithm',
+                   title: 'JS数据结构与算法',path:'js-data-structure-and-algorithm',
                }
            ],
            '/accumulate/': [

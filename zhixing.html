@@ -35,99 +35,216 @@
   var a = 1;
 </code>
 
+<input type="checkbox" indeterminate="true">
+
 <script>
 
+  /*
+
+  push（element）：添加一个新元素到栈顶位置；
+  pop（）：移除栈顶的元素，同时返回被移除的元素；
+  peek（）：返回栈顶的元素，不对栈做任何修改（该方法不会移除栈顶的元素，仅仅返回它）；
+  isEmpty（）：如果栈里没有任何元素就返回true，否则返回false；
+  size（）：返回栈里的元素个数。这个方法和数组的length属性类似；
+  toString（）：将栈结构的内容以字符串的形式返回。
+
+  */
+
+  function Stack() {
+      // 栈中的属性
+      this.items = [];
 
 
+      Stack.prototype.push = function (el) {
+          this.items.push(el)
+      }
 
-
-   function q(){
-       if (window.navigator.vibrate) {
-           window.navigator.vibrate([200, 100, 200]);
-
-           window.navigator.xxx
-       } else {
-           alert("你的浏览器不支持调用手机震动");
-       }
-
-   }
-
-  let a = {
-      name: 'wangzz',
-      age: 18,
-      info: {
-          tel: '123',
-          addr: 'henna'
+      Stack.prototype.pop = function () {
+          return this.items.pop();
+      }
+      Stack.prototype.peek = function () {
+          return this.items[this.items.length - 1]
+      }
+      Stack.prototype.isEmpty = function () {
+          return !!this.items.length
+      }
+      Stack.prototype.size = function () {
+          return this.items.length
+      }
+      Stack.prototype.toString = function () {
+          return this.items.toString().replace(/,/g, " ")
       }
   }
 
-  let b = Object.assign({}, a);
+  let ins = new Stack();
+
+  ins.push(1)
+  ins.push(2)
+  ins.push(3)
+  ins.push(4)
 
 
-  a.info.tel = '456';
+  //封装函数：将十进制转成二进制(十转二的运算最后倒叙取余的特点符合栈'先进后出')
+
+  /* 13
+  2 6 1
+  2 3 0
+  2 1 1
+  2 0 1
+   */
 
 
-  console.log('a', a);
+  let dec2bin = decNumber => {
+    let stack = new Stack();
 
+    while (decNumber > 0){
+        stack.push(decNumber % 2);
+        decNumber = Math.floor(decNumber / 2)
+        console.log(decNumber)
+    }
 
-  console.log('b', b);
-
-
-  let c = {
-      name: 'biu',
-      age: 13
+    // 3.从栈中取出0和1
+    let  binaryString = '';
+    let a = stack.items.length
+    while(stack.items.length != 0){
+        binaryString += stack.pop();
+    }
+    return binaryString;
   }
 
-  let d = c;
-
-  c.name = 'niu';
-
-  console.log('c', c);
-
-  console.log('d', d);
+  console.log(dec2bin(13))
 
 
-  Object.defineProperty(Object, "assign2", {
 
-      value: function (Object, ) {
+  /*
+  enqueue（element）：向队列尾部添加一个（或多个）新的项；
+  dequeue（）：移除队列的第一（即排在队列最前面的）项，并返回被移除的元素；
+  front（）：返回队列中的第一个元素——最先被添加，也将是最先被移除的元素。队列不做任何变动（不移除元素，只返回元素信息与Stack类的peek方法非常类似）；
+  isEmpty（）：如果队列中不包含任何元素，返回true，否则返回false；
+  size（）：返回队列包含的元素个数，与数组的length属性类似；
+  toString（）：将队列中的内容，转成字符串形式；
+  */
 
+  function Queue() {
+
+      this.items = [];
+
+      Queue.prototype.enqueue = el => {
+          this.items.push(el)
       }
 
-  })
+      Queue.prototype.dequeue = () => {
+          return this.items.shift()
+      }
+      Queue.prototype.front = () => {
+          return this.items[0]
+      }
+      Queue.prototype.isEmpty = () => {
+          return !!this.items.length
+      }
+      Queue.prototype.size = () => {
+          return this.items.length
+      }
+      Queue.prototype.toString = () => {
+          return this.items.toString().replace(/,/g, " ");
+      }
+  }
+
+
+  // 队列应用：面试题：击鼓传花
+  let passGame = (nameList, num) => {
+
+      var queue = new Queue()
+      for(var i = 0; i < nameList.length; i++){
+          queue.enqueue(nameList[i])
+      }
+
+
+      while (queue.size() > 1){
+          for (var i = 0; i < num - 1; i++){
+              queue.enqueue(queue.dequeue());
+          }
+          queue.dequeue()
+      }
+      console.log(queue.items)
+
+      return queue.items[0]
+  }
 
 
 
-  let length = 9;
+  //5.测试击鼓传花
+  let names = ['lily', 'lucy', 'Tom', 'Lilei', 'Tony']
 
-  console.log(--length)
-  console.log(--length)
-  console.log(--length)
-
+  console.log(passGame(names, 3));
 
 
-   class TextReverse extends HTMLElement {
-       constructor() {
-           super();
-           const shadowRoot = this.attachShadow({ mode: 'open' });
-           const text = this.getAttribute('text') || '';
-           const wrapper = document.createElement('span');
-           wrapper.textContent = text.split('').reverse().join('');
-           shadowRoot.appendChild(wrapper);
+  // 优先级队列实现
 
-           const style = document.createElement('style');
-           style.textContent = `* {
-              background: red;
-           }`
-           shadowRoot.appendChild(style);
-       }
-   }
+  function PriorityQueue() {
 
-   customElements.define(
-       'text-reverse',
-       TextReverse
-   )
+      function PriorityElement(el, priority) {
+        this.el = el;
+        this.priority = priority
+      }
+
+      this.items = [];
+
+      PriorityQueue.prototype.enqueue = (el, priority) => {
+
+          let element = new PriorityElement(el, priority);
+
+          if(this.isEmpty()){
+            this.items.push(element)
+          }else{
+              let priority = element.priority;
+
+              let index = 0;
+              for (var i = 0; i < this.items.length; i++){
+                  if(priority > this.items[i].priority){
+                      index = i;
+                  }
+              }
+
+              this.items.splice(index, 0, element);
+          }
+      }
+
+      PriorityQueue.prototype.isEmpty = () => {
+          return this.items.length === 0
+      }
+  }
 
 
+  let pq = new PriorityQueue();
+
+  pq.enqueue("wz", 1)
+  pq.enqueue("wzz", 3)
+  pq.enqueue("wzzz", 2)
+  pq.enqueue("wzzzz", 4)
+
+  console.log(pq)
+
+
+  function ryg(color, duration) {
+      return new Promise(function (resolve) {
+          setTimeout(resolve.bind(this, color), duration);
+      })
+  }
+
+  async function run() {
+      let light;
+      while (true) {
+          light = await ryg('red', 1000)
+          console.log(light)
+          light = await ryg('yellow', 2000)
+          console.log(light)
+          light = await ryg('green', 200)
+          console.log(light)
+
+      }
+  }
+  run()
 
 </script>
 </body>

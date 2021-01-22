@@ -74,6 +74,97 @@ const xor = (a, b) => exclude(a, b).concat(exclude(b, a)) // 补
 ```
 这几个方法全是 O(n2) 的复杂度…性能很差
 
+1. 使用 filter、concat 来计算
+
+```javascript
+//交集
+var c = a.filter(function(v){ return b.indexOf(v) > -1 });
+//差集
+var d = a.filter(function(v){ return b.indexOf(v) == -1 });
+//补集
+var e = a.filter(function(v){ return !(b.indexOf(v) > -1) }).concat(b.filter(function(v){ return !(a.indexOf(v) > -1)}));
+//并集
+var f = a.concat(b.filter(function(v){ return !(a.indexOf(v) > -1)}));
+```
+
+2. 对 Array 进行扩展
+
+```javascript
+//数组功能扩展
+//数组迭代函数
+Array.prototype.each = function(fn){
+  fn = fn || Function.K;
+   var a = [];
+   var args = Array.prototype.slice.call(arguments, 1);
+   for(var i = 0; i < this.length; i++){
+       var res = fn.apply(this,[this[i],i].concat(args));
+       if(res != null) a.push(res);
+   }
+   return a;
+};
+
+//数组是否包含指定元素
+Array.prototype.contains = function(suArr){
+  for(var i = 0; i < this.length; i ++){
+      if(this[i] == suArr){
+          return true;
+      }
+   }
+   return false;
+}
+
+//不重复元素构成的数组
+Array.prototype.uniquelize = function(){
+   var ra = new Array();
+   for(var i = 0; i < this.length; i ++){
+      if(!ra.contains(this[i])){
+          ra.push(this[i]);
+      }
+   }
+   return ra;
+};
+
+//两个数组的交集
+Array.intersect = function(a, b){
+   return a.uniquelize().each(function(o){return b.contains(o) ? o : null});
+};
+
+//两个数组的差集
+Array.minus = function(a, b){
+   return a.uniquelize().each(function(o){return b.contains(o) ? null : o});
+};
+
+//两个数组的补集
+Array.complement = function(a, b){
+   return Array.minus(Array.union(a, b),Array.intersect(a, b));
+};
+
+//两个数组并集
+Array.union = function(a, b){
+   return a.concat(b).uniquelize();
+};
+
+/*使用*/
+console.log("a与b的交集：", Array.intersect(a, b));
+console.log("a与b的差集：", Array.minus(a, b));
+console.log("a与b的补集：", Array.complement(a, b));
+console.log("a与b的并集：", Array.union(a, b));
+```
+
+3. ES6
+```javascript
+var sa = new Set(a);
+var sb = new Set(b);
+// 交集
+let intersect = a.filter(x => sb.has(x));
+// 差集
+let minus = a.filter(x => !sb.has(x));
+// 补集
+let complement = [...a.filter(x => !sb.has(x)), ...b.filter(x => !sa.has(x))];
+// 并集
+let unionSet = Array.from(new Set([...a, ...b]));
+```
+
 ## [软技能] 你知道什么是图片防盗链吗？防盗链怎么实现呢？说说你的方法
 
 盗链 是指在自己的页面上展示一些并不在自己服务器上的内容。通常的做法是通过技术手段获得它人服务器上的资源地址，绕过别人的资源展示页面，直接在自己的页面上向最终用户提供此内容。
