@@ -1,237 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Title</title><base target="_blank">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
+    li {
+      list-style-type: none;
+    }
+
+    .tab {
+      /*这个是最大的盒子*/
+      width: 978px;
+      margin: 100px auto;
+    }
+
+    /*大盒子里的上盒子*/
+    .tab_list {
+      /*没给宽，默认和父亲一样宽*/
+      height: 39px;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    .tab_list li {
+      float: left;
+      height: 39px;
+      line-height: 39px;
+      padding: 0 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .tab_list .current {
+      background-color: #c81623;
+      color: #fff;
+    }
+
+    .item {
+      /*也不保留位置*/
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
+<!--大盒子叫tab,里面有上下2个盒子，一个叫tab_list，一个叫tab_con-->
+<!--tab_list里面有5个li-->
+<!--tab_con里面有5个div-->
+<!--5个li和5个div是一一对应的关系-->
+<div class="tab">
+  <div class="tab_list">
+    <ul>
+      <li class="current">商品介绍</li>
+      <li>规格与包装</li>
+      <li>售后保障</li>
+      <li>商品评价（50000）</li>
+      <li>手机社区</li>
+    </ul>
+  </div>
 
-<input list="browsers">
-<datalist id="browsers">
-  <option value="Internet Explorer">
-  <option value="Firefox">
-  <option value="Chrome">
-  <option value="Opera">
-  <option value="Safari">
-</datalist>
+  <div class="tab_con">
+    <!-- block除了有转为块级元素以外，还有显示的意思 -->
+    <!-- 行内元素层级高，把上面的display:none给覆盖了 -->
+    <div class="item" style="display: block;">
+      商品介绍模块内容
+    </div>
+    <div class="item">
+      规格与包装模块内容
+    </div>
+    <div class="item">
+      售后保障模块内容
+    </div>
+    <div class="item">
+      商品评价（50000）模块内容
+    </div>
+    <div class="item">
+      手机社区模块内容
+    </div>
+  </div>
 
-
-<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/accesskey"   accesskey="o">快捷键x：accesskey</a>
-<div accesskey="j" onclick="this.style.color = 'red';">快捷键z：变红</div>
-
-
-<button onclick="q()">按钮</button>
-
-<text-reverse text='12345'></text-reverse>
-
-<video width=”450″ height=”340″ controls>
-  <source src=”W3Cschool.mp4″ type=”video/mp4″>
-  <source src=”W3Cschool.ogg” type=”video/ogg”>
-  <track kind=”subtitles” label=”English” src=”W3Cschool_en.vtt” srclang=”en”></track>
-</video>
-
-<code>
-  var a = 1;
-</code>
-
-<iframe src="http://218.205.110.184:9880/#/login" frameborder="0"></iframe>
+</div>
 <script>
+    //1. 上的模块选项卡:点击某一个,当前这一个底色会是红色,其余不变(排他思想) 修改类名的方式
+    // 获取元素
+    var tab_list = document.querySelector('.tab_list');
+    /*5个li对应的是5个item*/
+    var lis = tab_list.querySelectorAll('li');
+    var items = document.querySelectorAll('.item');
 
-  /*
+    //里面有5个小li,必定要用循环
+    //for循环绑定点击事件
+    for(var i = 0; i < lis.length; i++){
+        //开始给5个小li设置一个自定义属性：索引号index
+        lis[i].setAttribute('index',i)
+        //所有的孩子都要有onclick绑定事件
+        lis[i].onclick = function(){
+            //排他思想：干掉所有人，其余的li清除class这个类
+            for(var i = 0; i < lis.length; i++){
+                lis[i].className = '';
+            }
+            //留下我自己
+            this.className = 'current';
 
-  push（element）：添加一个新元素到栈顶位置；
-  pop（）：移除栈顶的元素，同时返回被移除的元素；
-  peek（）：返回栈顶的元素，不对栈做任何修改（该方法不会移除栈顶的元素，仅仅返回它）；
-  isEmpty（）：如果栈里没有任何元素就返回true，否则返回false；
-  size（）：返回栈里的元素个数。这个方法和数组的length属性类似；
-  toString（）：将栈结构的内容以字符串的形式返回。
-
-  */
-
-  function Stack() {
-      // 栈中的属性
-      this.items = [];
-
-
-      Stack.prototype.push = function (el) {
-          this.items.push(el)
-      }
-
-      Stack.prototype.pop = function () {
-          return this.items.pop();
-      }
-      Stack.prototype.peek = function () {
-          return this.items[this.items.length - 1]
-      }
-      Stack.prototype.isEmpty = function () {
-          return !!this.items.length
-      }
-      Stack.prototype.size = function () {
-          return this.items.length
-      }
-      Stack.prototype.toString = function () {
-          return this.items.toString().replace(/,/g, " ")
-      }
-  }
-
-  let ins = new Stack();
-
-  ins.push(1)
-  ins.push(2)
-  ins.push(3)
-  ins.push(4)
-
-
-  //封装函数：将十进制转成二进制(十转二的运算最后倒叙取余的特点符合栈'先进后出')
-
-  /* 13
-  2 6 1
-  2 3 0
-  2 1 1
-  2 0 1
-   */
-
-
-  let dec2bin = decNumber => {
-    let stack = new Stack();
-
-    while (decNumber > 0){
-        stack.push(decNumber % 2);
-        decNumber = Math.floor(decNumber / 2)
-        console.log(decNumber)
+            //2.下面的显示内容模块
+            //得到当前的属性的值
+            var index = this.getAttribute('index');
+            // console.log(index);
+            //再用一次排他思想：干掉所有人，让其余的item 这些div隐藏
+            for(var j = 0; j < items.length; j++){
+                items[j].style.display = 'none';
+            }
+            //留下我自己 让对应的item显示出来
+            items[index].style.display = 'block';
+        }
     }
-
-    // 3.从栈中取出0和1
-    let  binaryString = '';
-    let a = stack.items.length
-    while(stack.items.length != 0){
-        binaryString += stack.pop();
-    }
-    return binaryString;
-  }
-
-  console.log(dec2bin(13))
-
-
-
-  /*
-  enqueue（element）：向队列尾部添加一个（或多个）新的项；
-  dequeue（）：移除队列的第一（即排在队列最前面的）项，并返回被移除的元素；
-  front（）：返回队列中的第一个元素——最先被添加，也将是最先被移除的元素。队列不做任何变动（不移除元素，只返回元素信息与Stack类的peek方法非常类似）；
-  isEmpty（）：如果队列中不包含任何元素，返回true，否则返回false；
-  size（）：返回队列包含的元素个数，与数组的length属性类似；
-  toString（）：将队列中的内容，转成字符串形式；
-  */
-
-  function Queue() {
-
-      this.items = [];
-
-      Queue.prototype.enqueue = el => {
-          this.items.push(el)
-      }
-
-      Queue.prototype.dequeue = () => {
-          return this.items.shift()
-      }
-      Queue.prototype.front = () => {
-          return this.items[0]
-      }
-      Queue.prototype.isEmpty = () => {
-          return !!this.items.length
-      }
-      Queue.prototype.size = () => {
-          return this.items.length
-      }
-      Queue.prototype.toString = () => {
-          return this.items.toString().replace(/,/g, " ");
-      }
-  }
-
-
-  // 队列应用：面试题：击鼓传花
-  let passGame = (nameList, num) => {
-
-      var queue = new Queue()
-      for(var i = 0; i < nameList.length; i++){
-          queue.enqueue(nameList[i])
-      }
-
-
-      while (queue.size() > 1){
-          for (var i = 0; i < num - 1; i++){
-              queue.enqueue(queue.dequeue());
-          }
-          queue.dequeue()
-      }
-      console.log(queue.items)
-
-      return queue.items[0]
-  }
-
-
-
-  //5.测试击鼓传花
-  let names = ['lily', 'lucy', 'Tom', 'Lilei', 'Tony']
-
-  console.log(passGame(names, 3));
-
-
-  // 优先级队列实现
-
-  function PriorityQueue() {
-
-      function PriorityElement(el, priority) {
-        this.el = el;
-        this.priority = priority
-      }
-
-      this.items = [];
-
-      PriorityQueue.prototype.enqueue = (el, priority) => {
-
-          let element = new PriorityElement(el, priority);
-
-          if(this.isEmpty()){
-            this.items.push(element)
-          }else{
-              let priority = element.priority;
-
-              let index = 0;
-              for (var i = 0; i < this.items.length; i++){
-                  if(priority > this.items[i].priority){
-                      index = i;
-                  }
-              }
-
-              this.items.splice(index, 0, element);
-          }
-      }
-
-      PriorityQueue.prototype.isEmpty = () => {
-          return this.items.length === 0
-      }
-  }
-
-
-  let pq = new PriorityQueue();
-
-  pq.enqueue("wz", 1)
-  pq.enqueue("wzz", 3)
-  pq.enqueue("wzzz", 2)
-  pq.enqueue("wzzzz", 4)
-
-  console.log(pq)
-
-
-  function ryg(color, duration) {
-      return new Promise(function (resolve) {
-          setTimeout(resolve.bind(this, color), duration);
-      })
-  }
-
-
 </script>
 </body>
+
 </html>
