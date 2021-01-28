@@ -1,126 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>htmltopic</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <style>
     * {
       margin: 0;
-      padding: 0;
     }
 
-    li {
-      list-style-type: none;
-    }
 
-    .tab {
-      /*这个是最大的盒子*/
-      width: 978px;
-      margin: 100px auto;
-    }
-
-    /*大盒子里的上盒子*/
-    .tab_list {
-      /*没给宽，默认和父亲一样宽*/
-      height: 39px;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
-    }
-
-    .tab_list li {
-      float: left;
-      height: 39px;
-      line-height: 39px;
-      padding: 0 20px;
+    .test {
+      position: relative;
+      width: 100px;
+      height: 100px;
       text-align: center;
-      cursor: pointer;
+      line-height: 100px;
+      display: inline-block;
+      vertical-align: top;
     }
 
-    .tab_list .current {
-      background-color: #c81623;
-      color: #fff;
+
+    canvas {
+      margin-right: 5px;
     }
 
-    .item {
-      /*也不保留位置*/
-      display: none;
+
+    .down {
+      float: left;
+      margin: 40px 10px;
+    }
+    .down2 {
+      float: left;
+      margin: 40px 30px;
     }
   </style>
 </head>
-
 <body>
-<!--大盒子叫tab,里面有上下2个盒子，一个叫tab_list，一个叫tab_con-->
-<!--tab_list里面有5个li-->
-<!--tab_con里面有5个div-->
-<!--5个li和5个div是一一对应的关系-->
-<div class="tab">
-  <div class="tab_list">
-    <ul>
-      <li class="current">商品介绍</li>
-      <li>规格与包装</li>
-      <li>售后保障</li>
-      <li>商品评价（50000）</li>
-      <li>手机社区</li>
-    </ul>
-  </div>
 
-  <div class="tab_con">
-    <!-- block除了有转为块级元素以外，还有显示的意思 -->
-    <!-- 行内元素层级高，把上面的display:none给覆盖了 -->
-    <div class="item" style="display: block;">
-      商品介绍模块内容
-    </div>
-    <div class="item">
-      规格与包装模块内容
-    </div>
-    <div class="item">
-      售后保障模块内容
-    </div>
-    <div class="item">
-      商品评价（50000）模块内容
-    </div>
-    <div class="item">
-      手机社区模块内容
-    </div>
-  </div>
 
+<div class="test">测试 <span style="position: absolute;top: 20px;left: 0;line-height: 24px;z-index: 2;">绝对定位元素</span>
+  <img src="./1771154738.jpg" id="lamp" alt="" style="position: absolute;left: 0;top: 0;">
 </div>
+<div><a class="down" href="" download="downImg">下载</a>
+</div>
+<div><a class="down2" href="" download="downImg">下载2</a></div>
+
+
+
 <script>
-    //1. 上的模块选项卡:点击某一个,当前这一个底色会是红色,其余不变(排他思想) 修改类名的方式
-    // 获取元素
-    var tab_list = document.querySelector('.tab_list');
-    /*5个li对应的是5个item*/
-    var lis = tab_list.querySelectorAll('li');
-    var items = document.querySelectorAll('.item');
+    //直接选择要截图的dom，就能截图，但是因为canvas的原因，生成的图片模糊
+    //html2canvas(document.querySelector('div')).then(function(canvas) {
+    //    document.body.appendChild(canvas);
+    //});
+    //创建一个新的canvas
+    var canvas2 = document.createElement("canvas");
+    let _canvas = document.querySelector('div');
+    var w = parseInt(window.getComputedStyle(_canvas).width);
+    var h = parseInt(window.getComputedStyle(_canvas).height);
+    //将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+    canvas2.width = w * 2;
+    canvas2.height = h * 2;
+    canvas2.style.width = w + "px";
+    canvas2.style.height = h + "px";
+    //可以按照自己的需求，对context的参数修改,translate指的是偏移量
+    //  var context = canvas.getContext("2d");
+    //  context.translate(0,0);
+    var context = canvas2.getContext("2d");
+    //context.scale(1, 1);
 
-    //里面有5个小li,必定要用循环
-    //for循环绑定点击事件
-    for(var i = 0; i < lis.length; i++){
-        //开始给5个小li设置一个自定义属性：索引号index
-        lis[i].setAttribute('index',i)
-        //所有的孩子都要有onclick绑定事件
-        lis[i].onclick = function(){
-            //排他思想：干掉所有人，其余的li清除class这个类
-            for(var i = 0; i < lis.length; i++){
-                lis[i].className = '';
-            }
-            //留下我自己
-            this.className = 'current';
 
-            //2.下面的显示内容模块
-            //得到当前的属性的值
-            var index = this.getAttribute('index');
-            // console.log(index);
-            //再用一次排他思想：干掉所有人，让其余的item 这些div隐藏
-            for(var j = 0; j < items.length; j++){
-                items[j].style.display = 'none';
-            }
-            //留下我自己 让对应的item显示出来
-            items[index].style.display = 'block';
-        }
-    }
+    //document.body.appendChild(canvas2)
+
+    //img.onload = function () {
+        html2canvas(document.querySelector('div'), { canvas: canvas2, backgroundColor: "transparent" }).then(function(canvas) {
+            //document.body.appendChild(canvas);
+            //canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
+
+            document.querySelector(".down").setAttribute('href', canvas.toDataURL());
+
+        });
+
+    //};//图片加载完在执行
+
+
+</script>
+
+
+<script language="javascript">
+    //这是另一种写法
+    $(function () {
+        $(".down2").click(function () {
+            html2canvas($(".test")).then(function (canvas) {
+                var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 获取生成的图片的url
+                window.location.href = imgUri; // 下载图片
+            });
+
+
+            //html2canvas($('.tongxingzheng_bg'), {
+            //    onrendered: function (canvas) {
+            //        var data = canvas.toDataURL("image/png");//生成的格式
+            //        //data就是生成的base64码啦
+            //        alert(data);
+            //    }
+            //});
+        });
+    });
 </script>
 </body>
-
 </html>

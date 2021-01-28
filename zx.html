@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>html2canvas example</title>
+  <style>
+    body,div,span{
+      margin: 0;
+      padding: 0;
+    }
+    #view{
+      width: 900px;
+      height: 621px;
+      background-size: 100%;
+      margin: 0px auto;
+    }
+    .view-fxdmc{
+      height: 173px;
+      text-align: center;
+      line-height: 305px;
+      font-weight: bold;
+    }
+    .view-aqbm-xm{
+      height: 64px;
+      line-height: 86px;
+    }
+    .view-aqbm-xm span{
+      margin-left: 270px;
+    }
+    #qrcode{
+      margin-top: 37px;
+      width: 297px;
+      height: 299px;
+      margin-left: 89px;
+    }
+    .view-orgname{
+      margin-left: 556px;
+      margin-top: -36px;
+    }
+  </style>
+<body>
+<div id="view" >
+  <div class="view-fxdmc">
+    <span>溶剂回收储罐</span>
+  </div>
+  <div class="view-aqbm-xm">
+    <span>安全部门</span><span>李友冰</span>
+  </div>
+  <div>
+    <div id="qrcode">
+      <!-- <img src="qrcode_for_gh_861c8ff444de_430.jpg" id="qrcode" width="200px" height="200px"> -->
+    </div>
+    <div class="view-orgname"> 徐州易格科技有限公司</div>
+  </div>
+</div>
+<a href="#" class="down"  onclick="takeScreenshot()">下载</a>
+<a href="#" class="image"download="liyoubing" ></a>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script> -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="http://modernizr.cn/downloads/modernizr-latest.js"></script>
+<script src="https://www.jq22.com/demo/jeromeetienne-jquery/jquery.qrcode.min.js"></script>
+</head>
+<script type="text/javascript">
+    //生成图片 下载
+    function takeScreenshot(downloadName) {
+        $("img").css("margin-top","37px");
+        $("img").css("margin-left","89px");
+        html2canvas(document.getElementById('view'), {
+            onrendered: function(canvas) {
+                var url = canvas.toDataURL();//图片地址
+                document.querySelector(".image").setAttribute("download",downloadName);
+                document.querySelector(".image").setAttribute('href', url);
+                $(".image")[0].click();
+            }
+        });
+    }
+
+    // 设置 qrcode 参数
+    var qrcode1 = new qrcode('qrcode', {
+        text: '',
+        width: 297,
+        height: 299,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: qrcode.CorrectLevel.H
+    });
+
+
+    //数据
+    var datalist=[{
+        cname:"溶剂储罐",
+        dptname:"安全部门",
+        uname:"李**",
+        erweima:"https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+        orgname:"徐州易格科技有限公司"
+    },{
+        cname:"蒸馏反应釜",
+        dptname:"安全部门1",
+        uname:"李*冰1",
+        erweima:"https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+        orgname:"徐州易格科技有限公司1"
+    },{
+        cname:"有机废水处理设施",
+        dptname:"安全部门2",
+        uname:"李*冰2",
+        erweima:"https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+        orgname:"徐州易格科技有限公司2"
+    }]
+
+    for(var i=0;i<datalist.length;i++){
+        $(".view-fxdmc").find("span").text(datalist[i]["cname"]);
+        $(".view-aqbm-xm").find("span:nth-of-type(1)").text(datalist[i]["dptname"]);
+        $(".view-aqbm-xm").find("span:nth-of-type(2)").text(datalist[i]["uname"]);
+        $(".view-orgname").text(datalist[i]["orgname"]);
+        var href=datalist[i]["erweima"];
+        qrcode1.clear();
+        qrcode1.makeCode(href);
+
+        var downloadName=datalist[i]["cname"];
+        takeScreenshot(downloadName);
+
+    }
+    $("img").css("margin-left","0px");
+</script>
+</body>
+
+</html>
