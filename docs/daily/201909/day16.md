@@ -1,6 +1,6 @@
 ## [html] 使用标签怎样对一个单词标志缩写呢？
 
-<abbr>标签可以用于来展示缩写字符；
+&lt;abbr>标签可以用于来展示缩写字符；
 
 `<abbr title="People's Republic of China">PRC</abbr>`
 

@@ -4,7 +4,7 @@
 
 `<div style="font-size:16px;">parent<div style="font-size: 2em;">children</div></div>`
 
-可以使用<big>标签来不断的加大字体，但是这个标签现在已经被废弃使用了。
+可以使用&lt;big>标签来不断的加大字体，但是这个标签现在已经被废弃使用了。
 
 
 
