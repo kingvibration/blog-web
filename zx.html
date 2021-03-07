@@ -22,7 +22,30 @@
   <div></div>
   <div></div>
 </div>
+<button></button>
+<video id="v" src=""></video>
 <script>
+    const constraints = {
+        video: true,
+        audio: false
+    };
+    let promise = navigator.mediaDevices.getUserMedia(constraints);
+    promise.then(stream => {
+        let v = document.getElementById('v');
+        // 旧的浏览器可能没有srcObject
+        if ("srcObject" in v) {
+            v.srcObject = stream;
+        } else {
+            // 防止再新的浏览器里使用它，应为它已经不再支持了
+            v.src = window.URL.createObjectURL(stream);
+        }
+        v.onloadedmetadata = function (e) {
+            v.play();
+        };
+    }).catch(err => {
+        console.error(err.name + ": " + err.message);
+    })
+
     let arr = [1, 2, {}, 3, [4, {}, 5], [6, 7, [8, null, 9]]];
 
     function flat(arr) {
