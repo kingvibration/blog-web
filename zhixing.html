@@ -9,5 +9,23 @@
 </head>
 <body>
 
+<script>
+  class Star {
+      constructor(name, age) {
+          this.name = name
+          this.age = age
+          this.btn = document
+          this.btn.onclick = this.say.bind(this)
+      }
+      say() {
+          console.log(this.name)
+      }
+  }
+
+  const xs = new Star('sss', 20)
+
+  console.log(xs)
+</script>
+
 </body>
 </html>
